@@ -1,7 +1,3 @@
----
-title: README.md
----
-
 # **Building capacity in SARS-CoV-2 genomics in Africa**
 
 - [Introduction](#introduction)
