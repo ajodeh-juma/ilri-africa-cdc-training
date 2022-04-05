@@ -130,6 +130,7 @@ interactive -w compute05
     ```
 2. After downloading your data, say from a sequencing facility site, it is often good practice to verify that your data was not intentionally/accidentally tampered with. To do this, your data service provider will likely accompany your data with a file containing a verification code: `checksum_file` (***will be provided***). The `md5sum` command, using the `-c` (check) tag, allows for checking the integrity of a file downloaded or acquired from a different source.
     ```
+    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.md5     
     ls
     md5sum -c fastq-metadata.md5
     ``` 
