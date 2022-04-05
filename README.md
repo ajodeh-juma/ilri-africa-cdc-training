@@ -115,7 +115,7 @@ interactive -w compute05
     ```
 3. We will create the directories `data`, `results` and `genome` to store raw data in ```fastq``` format, output and reference genomes respectively. Intermediate output files per `tool/software` will be created within the `results` directory. We will exploit the bash array data structure to create all the directories at once.
     ```
-    mkdir -p data genome results
+    mkdir data genome results
     mkdir -p results/{fastqc,fastp,kraken,samtools,ivar,snpeff,pangolin,nextclade,multiqc,bowtie2,bedtools}
     ```  
 4. Change into the `data` directory, from where we will retrieve our ```fastq``` files.
