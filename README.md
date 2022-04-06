@@ -77,7 +77,7 @@ sequencing either ```single``` or ```paired-end```.
 
 This module will come after the introductory Linux module and therefore assumes familiarity with basic Linux command-line use. It also assumes you have an account and are operating in the ILRI computing cluster from a local Linux environment.
 
->**Note**  
+>**Note**
 
 >Once inside the `hpc`, all instances of ```$USER``` will be equivalent to the hpc username that you were assigned, for example `Bio4Info$$`. Your username, by default, is stored in a variable called `USER`. By using it, you will not have to type-in your username, rather, your shell will automatically pick your username which is the value stored in the `USER` variable. The `$` (dollar) character-prefix to a variable name is used to call the value of that variable.
 
@@ -117,7 +117,7 @@ interactive -w compute05
     ```
     mkdir data genome results
     mkdir -p results/{fastqc,fastp,kraken,samtools,ivar,snpeff,pangolin,nextclade,multiqc,bowtie2,bedtools}
-    ```  
+    ```
 4. Change into the `data` directory, from where we will retrieve our ```fastq``` files.
     ```
     cd data
@@ -126,21 +126,21 @@ interactive -w compute05
 #### ***Data retrieval and integrity checks***
 1. While there are specialised tools for data retieval from nucleotide sequence databases, universal `Unix` command (`wget`) can be used to download data over internet.
     ```
-    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.tar.gz     
+    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.tar.gz
     ```
 2. After downloading your data, say from a sequencing facility site, it is often good practice to verify that your data was not intentionally/accidentally tampered with. To do this, your data service provider will likely accompany your data with a file containing a verification code: `checksum_file` (***will be provided***). The `md5sum` command, using the `-c` (check) tag, allows for checking the integrity of a file downloaded or acquired from a different source.
     ```
-    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.md5     
+    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.md5
     ls
     md5sum -c fastq-metadata.md5
-    ``` 
+    ```
 3. Next, we will unzip the file using `tar` with the `-xf` (extract, file; respectively) tags, which tells `tar` extract the given file.
     ```
     tar -xf fastq-metadata.tar.gz
     ls
     ```
 4.  Download SARS-CoV-2 reference genome and the genome annotation file.
- 
+
     We will retrieve SARS-CoV-2 reference genome and the annotation from [NCBI](https://www.ncbi.nlm.nih.gov/).
     1. On a web browser, open the link [NCBI](https://www.ncbi.nlm.nih.gov/).
     2. Type 'SARS-CoV-2' on the search box and select 'Genome' database.
@@ -170,12 +170,12 @@ interactive -w compute05
 
 ## Analysis
 
-#### ***Loading modules***  
+#### ***Loading modules***
 1. Clear the environment.
     ```
     module purge
     ```
-2. Load modules using the `module load <tool-name>`command. 
+2. Load modules using the `module load <tool-name>`command.
     ```
     module load fastqc/0.11.7
     module load fastp/0.22.0
@@ -191,7 +191,7 @@ interactive -w compute05
     module load nextclade/1.11.0
     module load python/3.9
     ```
-    
+
     **Optional**
     The above modules can also be loaded using a single command
     ```
@@ -212,13 +212,13 @@ interactive -w compute05
 
     ```
     samtools faidx nCoV-2019.fasta
-    ```  
+    ```
     The above command generates the index for reference genome with the name `nCoV-2019.fasta.fai`.
-2. We can take a sneak-view of the generated file and manipulate it for fun, say, to extract the genome size of reference fasta. This can be extracted from the `faidx`-indexed genome file using the ```cut``` command. The ```-f``` specifies the field(s) of interest. 
+2. We can take a sneak-view of the generated file and manipulate it for fun, say, to extract the genome size of reference fasta. This can be extracted from the `faidx`-indexed genome file using the ```cut``` command. The ```-f``` specifies the field(s) of interest.
     ```
     cut -f 1,2 nCoV-2019.fasta.fai > nCoV-2019.fasta.sizes
     ```
-3. In order to allow easy access of genome regions during read mapping we will index the reference genome using ```bowtie2-build``` command.  
+3. In order to allow easy access of genome regions during read mapping we will index the reference genome using ```bowtie2-build``` command.
 
     ```
     mkdir /var/scratch/$USER/AfricaCDC_training/genome/bowtie2
@@ -233,11 +233,11 @@ interactive -w compute05
     The above command generates index files with the suffix `.bt2` for the reference genome with the prefix `nCoV-2019.`
 4. Build SnpEff database for the reference genome
 
-    [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/), a variant annotation and predictor needs a database to perform genomic annotations. There are pre-built databases for thousands of genomes, so chances are that your organism of choice already has a SnpEff database available. 
-    
+    [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/), a variant annotation and predictor needs a database to perform genomic annotations. There are pre-built databases for thousands of genomes, so chances are that your organism of choice already has a SnpEff database available.
+
     >**Note** We will use pre-built SARS-CoV-2 SnpEff database
-    
-    
+
+
     ***Optional***
     In the (unlikely?) event that you need to build one yourself, you can build one using the commands found [here](http://pcingola.github.io/SnpEff/se_buildingdb/)
 
@@ -249,7 +249,7 @@ interactive -w compute05
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/fastqc/
     ```
-2. Run ```fastqc```  
+2. Run ```fastqc```
     ```
     fastqc \
         -t 1 \
@@ -259,7 +259,7 @@ interactive -w compute05
     ```
     ***Optional***
         Run step 3. above for the other 2 samples.
-        
+
 #### ***Quality and adapter filtering***
 The preceeding step will guide us on the possible filtering and trimming operations to subject our data to. Depending on your study design, it is important to minimise noise as much as to zero, if possible. However, the latter case may be practically impossible.
 
@@ -270,7 +270,7 @@ The preceeding step will guide us on the possible filtering and trimming operati
     ```
 
 2. Run ```fastp```. `i,I` (input(s)) are for read1, read2; respectively. `o,O` (output(s)) are for the respective read1, read2; respectively. The `2>` construct redirects the standard error channel for saving as a log file.
-    
+
     ```
     fastp \
         -w 1 \
@@ -282,14 +282,14 @@ The preceeding step will guide us on the possible filtering and trimming operati
         -j COVM02379.fastp.json \
         2> COVM02379.fastp.log
     ```
-    
+
     ***Optional***
         Run steps 3 and 4 above for the other 2 samples.
 
 #### ***Decontamination***
 
 At times, sequencing experients will pick up non-target nucleic acids: for instance, host genetic material in SARS-CoV-2  sequencing. Such may obscure our signal of interest in the data; therefore, it is important to minimise or remove such sources of noise (unwanted background).
-There are several bioinformatics tools and databases which can be used in querying the reads data in order to remove such noise. A commonly used tool is [Kraken2](https://github.com/DerrickWood/kraken2/wiki). 
+There are several bioinformatics tools and databases which can be used in querying the reads data in order to remove such noise. A commonly used tool is [Kraken2](https://github.com/DerrickWood/kraken2/wiki).
 Kraken2 is a fast and memory efficient tool for taxonomic assignment of metagenomics sequencing reads. ```Kraken2``` can allow us to query the composition of our samples by searching for sequence reads against a pre-formatted database ("contaminant").
 
 >**Note**
@@ -340,7 +340,7 @@ In this tutorial, we will use pre-formatted kraken2 ```human``` database to iden
     ---
 
     **Quiz:** *What percent of the sequencing reads are classified as SARS-CoV-2?*
-    
+
     More information on output formats can be found [here](https://github.com/DerrickWood/kraken2/wiki/Manual#output-formats).
 
     ***Optional***
@@ -365,7 +365,7 @@ Here we use [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml), an
 1. Change to the ```bowtie2``` directory.
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/bowtie2
-    ```  
+    ```
 
 2. Run the ```bowtie2``` command to align reads to the reference genome.
 
@@ -383,7 +383,7 @@ Here we use [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml), an
     ```
     ***Optional***
         Run steps 1 and 2. above for the other 2 samples.
-    
+
 #### ***Sort and Index alignment map***
 
 Alignments can often be manipulated using [```samtools```](http://www.htslib.org/) using several sub commands
@@ -393,7 +393,7 @@ Alignments can often be manipulated using [```samtools```](http://www.htslib.org
     ```
     samtools sort -@ 1 -o COVM02379.sorted.bam -T COVM02379 COVM02379.trim.dec.bam
     ```
-    
+
 2. Index the sorted alignment
     ```
     samtools index -@ 1 COVM02379.sorted.bam
@@ -408,7 +408,7 @@ iVar uses primer positions supplied in a BED file to soft clip primer sequences 
 1. Change to the output directory ```ivar```
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/ivar/
-    ```  
+    ```
 
 2. Run the command to trim primers
 
@@ -439,7 +439,7 @@ Here we will use [bedtools](https://github.com/arq5x/bedtools2), your swiss-army
 1. Change to the output directory ```bedtools```
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/bedtools/
-    ```  
+    ```
 
 2. Compute coverage
     ```
@@ -459,7 +459,7 @@ Here we will use [bedtools](https://github.com/arq5x/bedtools2), your swiss-army
 
 
 #### ***Variant calling***
-`iVar` uses the output of the ```samtools mpileup``` command to call variants - single nucleotide variants(SNVs) and indels. 
+`iVar` uses the output of the ```samtools mpileup``` command to call variants - single nucleotide variants(SNVs) and indels.
 
 
 Pileup format consists of TAB-separated lines, with each line representing the pileup of reads at a single genomic position.
@@ -487,7 +487,7 @@ In order to call variants correctly, the reference file used for alignment must 
 1. Change to the output directory ```ivar```
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/ivar/
-    ```  
+    ```
 
 2. Call variants
 
@@ -520,15 +520,15 @@ In order to call variants correctly, the reference file used for alignment must 
       --allele_freq_thresh 0.75 > COVM02379.variant.counts.log
     ```
     ##### **VCF file format**
-    
-    The header begins the file and provides metadata describing the body     of the file. 
-    Header lines are denoted as starting with `#`. 
+
+    The header begins the file and provides metadata describing the body     of the file.
+    Header lines are denoted as starting with `#`.
     Special keywords in the header are denoted with `##`.
     Recommended keywords   include fileformat, fileDate and reference.
 
     The header contains keywords that optionally semantically and      syntactically describe the fields used in the body of the file, notably INFO, FILTER, and FORMAT.
-    
-    
+
+
     |   |      Name    |  Brief description (see the specification for details)[VCF](https://samtools.github.io/hts-specs/VCFv4.1.pdf).  |
     |---|:-------------|:---------------------------------------------------------|
     | 1 |  CHROM       |The name of the sequence (typically a chromosome) on which the variation is being called.                                                           |
@@ -564,7 +564,7 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
 1. Change to the output directory ```snpeff```
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/snpeff/
-    ```  
+    ```
 
 2. Annotate and predict variants
 
@@ -574,9 +574,9 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
         -c /var/scratch/$USER/AfricaCDC_training/databases/snpeff_db/snpeff.config \
         -dataDir /var/scratch/$USER/AfricaCDC_training/databases/snpeff_db/data \
         /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.vcf.gz \
-        > COVM02379.ann.vcf    
+        > COVM02379.ann.vcf
     ```
-3. Compress vcf file 
+3. Compress vcf file
     ```
     bgzip -c COVM02379.ann.vcf > COVM02379.ann.vcf.gz
     ```
@@ -597,7 +597,7 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
     ```
 
 7. Filter variants
-    [SnpSift](http://pcingola.github.io/SnpEff/ss_introduction/) annotates genomic variants using databases, filters, and manipulates genomic annotated variants. Once you annotated your files using SnpEff, you can use SnpSift to help you filter large genomic datasets in order to find the most significant variants for your experiment. 
+    [SnpSift](http://pcingola.github.io/SnpEff/ss_introduction/) annotates genomic variants using databases, filters, and manipulates genomic annotated variants. Once you annotated your files using SnpEff, you can use SnpSift to help you filter large genomic datasets in order to find the most significant variants for your experiment.
     ```
       java -Xmx4g -jar /export/apps/snpeff/4.1g/SnpSift.jar \
             extractFields \
@@ -618,18 +618,18 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
 
 
 #### ***Consensus genome assembly***
-To generate a consensus sequence iVar uses the output of samtools mpileup command. The mpileup output must be piped into ivar consensus. There are five parameters that can be set: 
+To generate a consensus sequence iVar uses the output of samtools mpileup command. The mpileup output must be piped into ivar consensus. There are five parameters that can be set:
 - minimum quality ```-q``` (Default: 20).
 - minimum frequency threshold ```-t``` (Default: 0).
 - minimum depth to call a consensus ```-m``` (Default: 10).
-- a flag ```-n``` to exclude nucleotides from regions with depth less than the minimum depth and a character to call in regions with coverage lower than the speicifed minimum depth (Default: 'N'). 
+- a flag ```-n``` to exclude nucleotides from regions with depth less than the minimum depth and a character to call in regions with coverage lower than the speicifed minimum depth (Default: 'N').
 
 Minimum quality is the minimum quality of a base to be considered in calculations of variant frequencies at a given position. Minimum frequency threshold is the minimum frequency that a base must match to be called as the consensus base at a position. If one base is not enough to match a given frequency, then an ambigious nucleotide is called at that position. Minimum depth is the minimum required depth to call a consensus. If ```-k``` flag is set then these regions are not included in the consensus sequence. If ```-k``` is not set then by default, a 'N' is called in these regions. You can also specfy which character you want to add to the consensus to cover regions with depth less than the minimum depth. This can be done using ```-n``` option. It takes one of two values: ```-``` or ```N```.
 
 1. Change to the output directory ```ivar```
     ```
     cd /var/scratch/$USER/AfricaCDC_training/results/ivar/
-    ```  
+    ```
 
 2. Generate pileup and consensus genome sequences
 
@@ -663,22 +663,23 @@ The ```tee``` command reads from the standard input and writes to both standard 
 
 
 #### ***Nextclade: Clade assignment***
-[`Nextclade`](https://clades.nextstrain.org/) is a tool within the [`Nextrain`](https://nextstrain.org/) collection that uses sequence differences for their assignment to clades. It also report suspect quality issues with such sequences. There are both web- and command-line-interfaces for `nextclade`. To run it in the command-line, we need some reference files: genome, feature map, origin tree, primers and quality configurations. Luckily, for SARS-CoV-2, these can be easily retrieved using the same tool, otherwise, you will have to create/retrieve accordingly.
+[**Nextclade**](https://docs.nextstrain.org/projects/nextclade/en/stable/) is a tool within the [**Nextrain**](https://nextstrain.org/) collection that uses sequence differences for their assignment to [clades](https://clades.nextstrain.org/). It also reports suspect quality issues with such sequences. There are both [web-](https://clades.nextstrain.org/) and [command-line-interfaces](https://docs.nextstrain.org/projects/nextclade/en/stable/user/nextclade-cli.html) for *nextclade*. To run it in the command-line, we need some reference files: genome, feature map, origin tree, primers and quality configurations. Luckily, for SARS-CoV-2, these can be easily retrieved using the same tool, otherwise, you will have to create/retrieve accordingly.
 
 1. Get the reference dataset
     ```
-    nextclade dataset get --name 'sars-cov-2' --output-dir /var/scratch/$USER/AfricaCDC_training/databases/nextclade
+    nextclade dataset get --name 'sars-cov-2' --reference 'MN908947' --output-dir /var/scratch/$USER/AfricaCDC_training/nextclade_db
     ```
 2. Perform clade assignment
     ```
     nextclade \
        --input-fasta /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.cons.fa \
-       --input-root-seq /var/scratch/$USER/AfricaCDC_training/databases/nextclade/reference.fasta \
+       --input-dataset /var/scratch/$USER/AfricaCDC_training/nextclade_db \
+       --input-root-seq /var/scratch/$USER/AfricaCDC_training/nextclade_db/reference.fasta \
        --genes E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S \
-       --input-gene-map /var/scratch/$USER/AfricaCDC_training/databases/nextclade/genemap.gff \
-       --input-tree /var/scratch/$USER/AfricaCDC_training/databases/nextclade/tree.json \
-       --input-qc-config /var/scratch/$USER/AfricaCDC_training/databases/nextclade/qc.json \
-       --input-pcr-primers /var/scratch/$USER/AfricaCDC_training/databases/nextclade/primers.csv \
+       --input-gene-map /var/scratch/$USER/AfricaCDC_training/nextclade_db/genemap.gff \
+       --input-tree /var/scratch/$USER/AfricaCDC_training/nextclade_db/tree.json \
+       --input-qc-config /var/scratch/$USER/AfricaCDC_training/nextclade_db/qc.json \
+       --input-pcr-primers /var/scratch/$USER/AfricaCDC_training/nextclade_db/primers.csv \
        --output-csv /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.csv \
        --output-tree /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.auspice.json \
        --output-dir /var/scratch/$USER/AfricaCDC_training/results/nextclade/ \
@@ -687,11 +688,21 @@ The ```tee``` command reads from the standard input and writes to both standard 
 
 #### ***Pangolin Lineage Assignment***
 
-To assign [Pangolin Lineages](https://cov-lineages.org/lineage_list.html), we will use the web tool, besides the command-line. With the web tool we must retrieve out consensus genome from the analysis server (HPC) to our local computer.
+[Phylogenetic Assignment of Named Global Outbreak Lineages (Pangolin)](https://cov-lineages.org/resources/pangolin.html) implements a dynamic nomenclature of SARS-CoV-2 lineages, known as the Pango nomenclature. To assign [Pangolin Lineages](https://cov-lineages.org/lineage_list.html), we will use [the web version of pangolin](https://pangolin.cog-uk.io/). It also has a robust [command-line version](https://github.com/cov-lineages/pangolin) that we will look into later. With the web version we must retrieve out consensus genome from the analysis server (HPC) to our local computer. Follow the following steps to assign your query sequences pangolin lineages. Also here is a [***tutorial***](https://cov-lineages.org/resources/pangolin/tutorial.html).
 
 1. In your bowser open [Pangolin Web Application](https://pangolin.cog-uk.io/). This is the online version of [Pangolin](https://github.com/cov-lineages/pangolin).
 2. Now copy-paste/drag-drop your consensus file to the site and click `Start Analysis`
 3. Once done, download the results and if you need to, copy the names of sequences that failed the analysis to a file. The download is called `results.csv`.
+
+Here is how pangolin performs the analysis:
+![alt text](https://cov-lineages.org/assets/images/pangolin_pipelines.svg "Pangolin Analysis Workflow")
+
+Alternatively to perform the commandline analysis for Pangolin, let us proceed as follows. We will need to use a singularity image (think of a singularity image as a ready-to-use container within which we have packaged all the software needed to do a certain task) in this case packaging pangolin softwares*.
+1. Let us create a directory to store our image and download the image:
+```
+mkdir
+```
+
 
 ## Summarize results
 Aggregate results from bioinformatics analyses across many samples into a single report with [MultiQC](https://multiqc.info/)
@@ -710,8 +721,8 @@ Aggregate results from bioinformatics analyses across many samples into a single
         --config /var/scratch/$USER/AfricaCDC_training/assets/multiqc_config.yaml \
         /var/scratch/$USER/AfricaCDC_training/results/
     ```
-      
-## Download reports 
+
+## Download reports
 
 1. To help with file transfers, we will create a user-specific directory inside the `global` temporary directory of the head-node.
     ```
@@ -733,7 +744,7 @@ Aggregate results from bioinformatics analyses across many samples into a single
 
 4. Copy all the contents of the `/var/scratch/global/AfricaCDC_training_outputs/<username>/` directory in the HPC to the local outputs directory you created in the previous step.
     >**Note**
-    
+
     >Replace ```username``` with the actual provided HPC account username
     ```
     rsync \
@@ -750,10 +761,10 @@ Aggregate results from bioinformatics analyses across many samples into a single
 ## Data Retrieval and Review
 Having sequenced our samples in both MiSeq (Illumina) and MinION (ONT) we can now transfer the sequence output to the HPC where we will conduct the bioinformatics analysis.
 
-#### ***Transfer of data: Illumina***  
-MiSeq is based on Windows and data transfer will be done by copy-pasting the data to HPC through the network. Ensure the transfer is completed successfully without errors.  
+#### ***Transfer of data: Illumina***
+MiSeq is based on Windows and data transfer will be done by copy-pasting the data to HPC through the network. Ensure the transfer is completed successfully without errors.
 
-#### ***Transfer of data: MinION***  
+#### ***Transfer of data: MinION***
 The MinION sequencer stores its sequencing output in a Linux based computer. To transfer the data we logged into computer and transferred the data on the command line as follows.
 ```
 rsync -avP <path-to-the-directory-with_sequencing-ouput>/ <username>:<path-to-the-directory-to-store-sequencing-ouput>/
@@ -809,7 +820,7 @@ What are some of the issues you notice with the above metadata?
 ---
 <details close>
   <summary>Answer</summary>
-  
+
   - Inconsistent header naming
   - Future dates
   - Mixed data types within column
