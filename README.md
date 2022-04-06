@@ -684,10 +684,6 @@ The ```tee``` command reads from the standard input and writes to both standard 
        --output-dir /var/scratch/$USER/AfricaCDC_training/results/nextclade/ \
        --output-basename COVM02379.cons
     ```
-3. Copy files of interest (consensus) to the global scratch directory for further downloading.
-    ```
-    cp COVM02379.cons.fa /var/scratch/global/AfricaCDC_training_outputs/$USER/
-    ```
 
 #### ***Pangolin Lineage Assignment***
 
@@ -723,16 +719,16 @@ Aggregate results from bioinformatics analyses across many samples into a single
     ```
 2. Copy output files of interest (multiqc, primer-trimmed bam).
     ```
-    $ cp /var/scratch/$USER/AfricaCDC_training/results/ivar/*.sorted.bam* \
-    /var/scratch/global/AfricaCDC_training_outputs/$USER/
-    $ cp -r SARS-CoV-2_multiqc_report_plots *html \
-    /var/scratch/global/AfricaCDC_training_outputs/$USER/
+    cp /var/scratch/$USER/AfricaCDC_training/results/ivar/*.sorted.bam* \
+        /var/scratch/global/AfricaCDC_training_outputs/$USER/
+    cp -r SARS-CoV-2_multiqc_report_plots *.html \
+        /var/scratch/global/AfricaCDC_training_outputs/$USER/
     ```
 3. On your local computer, open a terminal and create a directory in the `Downloads` directory
 
     ```
-    $ mkdir -p ~/Downloads/AfricaCDC_training/results
-    $ cd ~/Downloads/AfricaCDC_training/results/
+    mkdir -p /mnt/c/Downloads/AfricaCDC_training/results
+    cd /mnt/c/Downloads/AfricaCDC_training/results/
     ```
 
 4. Copy all the contents of the `/var/scratch/global/AfricaCDC_training_outputs/<username>/` directory in the HPC to the local outputs directory you created in the previous step.
@@ -740,9 +736,14 @@ Aggregate results from bioinformatics analyses across many samples into a single
     
     >Replace ```username``` with the actual provided HPC account username
     ```
-    $ rsync \
+    rsync \
         -avP \
-        <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/$USER/* \
+        <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/username/* \
+        .
+    ```
+    OR
+    ```
+        scp <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/username/* \
         .
     ```
 
@@ -755,7 +756,7 @@ MiSeq is based on Windows and data transfer will be done by copy-pasting the dat
 #### ***Transfer of data: MinION***  
 The MinION sequencer stores its sequencing output in a Linux based computer. To transfer the data we logged into computer and transferred the data on the command line as follows.
 ```
-$ rsync -avP <path-to-the-directory-with_sequencing-ouput>/ <username>:<path-to-the-directory-to-store-sequencing-ouput>/
+rsync -avP <path-to-the-directory-with_sequencing-ouput>/ <username>:<path-to-the-directory-to-store-sequencing-ouput>/
 ```
 Replaced `<path-to-the-directory-with_sequencing-ouput>` with the path to the directory storing the sequencing output. Replaced `<HPC-login-username>` with your hpc login username (i.e user##@hpc.ilri.cgiar.org) and `<path-to-the-directory-to-store-sequencing-output>` with path to the directory you want to store the data in the HPC.
 Example:`
@@ -764,20 +765,20 @@ rsync -avP /media/SeqData_LTS/20220405_1121_MN2816_FAH91436_2b8e9827/ <username>
 #### ***Reviewing data: Illumina***
 Change working directory into the directory that stores the Illumina dataset
 ```
-$ cd /var/scratch/global/miseq/
+cd /var/scratch/global/miseq/
 ```
 Now let us view what is the sequencing output. The output is a FASTA format. Note: in the second command replace `<one-of-the-fastq.gz>`
  with the name of the fastq.gz file
  ```
-$ ls fastq/
-$ less -S fastq/<one-of-the-fastq.gz>
+ls fastq/
+less -S fastq/<one-of-the-fastq.gz>
 ```
 
 #### ***Reviewing data: ONT***
 Change working directory into directory that stores the ONT data. Note: replace `<name-of-run-folder>` with the name of the run folder
 ```
-$ cd /var/scratch/global/ONT/
-$ ls <name-of-run-folder>
+cd /var/scratch/global/ONT/
+ls <name-of-run-folder>
 ```
 
 ## Working with metadata
