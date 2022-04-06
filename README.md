@@ -683,8 +683,23 @@ The ```tee``` command reads from the standard input and writes to both standard 
        --output-csv /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.csv \
        --output-tree /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.auspice.json \
        --output-dir /var/scratch/$USER/AfricaCDC_training/results/nextclade/ \
-       --output-basename COVM02379.cons
+       --output-basename COVM02379.cons \
+       2> /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.nextclade.log
     ```
+
+3. Visualization: The output of Nextclade includes a phylogenetic tree in `.json` format. This tree can be visualized in [Auspice](https://auspice.us/). First let us download the the `.json` file:
+```
+cp /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.auspice.json ~/
+```
+In your local computer use `scp` to copy the file to any desired destination:
+```
+scp <user_name>@hpc.ilri.cgiar.org:/home/<user_name>/*.json <destination_folder>
+```
+Open [Auspice](https://auspice.us/) and drag and drop the `.json` file in the [Auspice](https://auspice.us/). Now edit the tree.
+  - In `Dataset` click the drop down arrow and select `ncov`, below it select `open` and below it select `global`.
+  - In `Color By` click the drop down arrow and select `clade`.
+  - Do any other adjustments as you wish.
+
 
 #### ***Pangolin Lineage Assignment***
 
@@ -698,9 +713,33 @@ Here is how pangolin performs the analysis:
 ![alt text](https://cov-lineages.org/assets/images/pangolin_pipelines.svg "Pangolin Analysis Workflow")
 
 Alternatively to perform the commandline analysis for Pangolin, let us proceed as follows. We will need to use a singularity image (think of a singularity image as a ready-to-use container within which we have packaged all the software needed to do a certain task) in this case packaging pangolin softwares*.
-1. Let us create a directory to store our image and download the image:
+1. Let us create a directory to store our image:
 ```
-mkdir
+mkdir /var/scratch/$USER/AfricaCDC_training/singularity
+```
+2. Download the image:
+```
+singularity pull --dir /var/scratch/$USER/AfricaCDC_training/singularity/ \
+                    --force docker://staphb/pangolin:latest
+```
+3. Download Pangolin's referemce data: Downloads/updates to latest release of pangoLEARN and constellations
+```
+singularity run /var/scratch/$USER/AfricaCDC_training/singularity/pangolin_latest.sif \
+          pangolin --update-data \
+          --datadir /var/scratch/$USER/AfricaCDC_training/pangolin_db
+```
+4. Conduct Pangolin Lineage assignment:
+```
+singularity run /var/scratch/$USER/AfricaCDC_training/singularity/pangolin_latest.sif
+          pangolin /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.cons.fa \
+          --alignment \
+          --usher \
+          --max-ambig 0.3 \
+          --min-length 25000 \
+          --outdir /var/scratch/$USER/AfricaCDC_training/results/pangolin/ \
+          --outfile COVM02379.pangolin.usher.csv \
+          --datadir /var/scratch/$USER/AfricaCDC_training/pangolin_db/ \
+          2> /var/scratch/$USER/AfricaCDC_training/results/pangolin/COVM02379.pangolin.usher.log
 ```
 
 
