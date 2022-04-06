@@ -738,12 +738,12 @@ Aggregate results from bioinformatics analyses across many samples into a single
     ```
     rsync \
         -avP \
-        <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/username/* \
+        <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/<username>/* \
         .
     ```
     OR
     ```
-        scp <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/username/* \
+        scp <username>@hpc.ilri.cgiar.org:/var/scratch/global/AfricaCDC_training_outputs/<username>/* \
         .
     ```
 
