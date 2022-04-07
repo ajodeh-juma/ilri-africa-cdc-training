@@ -757,12 +757,12 @@ ssh <username>@hpc.ilri.cgiar.org
 ```
 - Go into ineractive mode in compute05
 ```
-interactive -w compute05
+interactive -c 3 -J nextflow
 ```
 - Symbolicly link our data to the to a directory in `scratch`
 ```
-mkdir /var/scratch/<user##>/miseq_analysis/
-cd /var/scratch/<user##>/miseq_analysis/
+mkdir -p /var/scratch/global/<user##>/miseq_analysis/
+cd /var/scratch/global/<user##>/miseq_analysis/
 ln -s /var/scratch/global/ilri_AuCDC/miseq/* ./
 ```
 - Now let us go back to [Launch pipeline](https://nf-co.re/launch?id=1649311271_b34e829e5e3f) and do step by step set up.
@@ -777,7 +777,7 @@ NXF_OPTS='-Xms1g -Xmx4g'
 ```
   - Launch the analysis: Use your user name in <user##> and the you will see your run name in <nextflow run nf-core/viralrecon -r 2.4.1 -name AfricaCDC_sarscov2 -profile singularity -resume -params-file nf-params.json>:
 ```
-srun --partition=batch -w compute05 -J <user##> -n 3 nextflow run nf-core/viralrecon -r 2.4.1 -name <AfricaCDC_sarscov2> -profile singularity -resume -params-file nf-params.json
+nextflow run nf-core/viralrecon -r 2.4.1 -name <run_name> -profile singularity -resume -params-file nf-params.json
 ```
 - Wait for the run to be completed.
 - Let us download the multiQC file and visualize as follows:
