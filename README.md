@@ -761,7 +761,7 @@ interactive -c 3 -J nextflow
 ```
 - Create a working directory in compute node:
 ```
-mkdir /var/scratch/$USER/miseq_analysis/
+mkdir -p /var/scratch/$USER/miseq_analysis/
 cd /var/scratch/$USER/miseq_analysis/
 mkdir results work
 ```
