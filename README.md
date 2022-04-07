@@ -777,7 +777,7 @@ NXF_OPTS='-Xms1g -Xmx4g'
 ```
   - Launch the analysis: Use your user name in <user##> and the you will see your run name in <nextflow run nf-core/viralrecon -r 2.4.1 -name AfricaCDC_sarscov2 -profile singularity -resume -params-file nf-params.json>:
 ```
-nextflow run nf-core/viralrecon -r 2.4.1 -name <run_name> -profile singularity -resume -params-file nf-params.json
+nextflow run nf-core/viralrecon -r 2.4.1 -name <run_name> -profile singularity -resume -params-file /var/scratch/global/<user##>/miseq_analysis/nf-params.json
 ```
 - Wait for the run to be completed.
 - Let us download the multiQC file and visualize as follows:
