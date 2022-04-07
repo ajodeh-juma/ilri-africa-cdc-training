@@ -763,6 +763,7 @@ interactive -c 3 -J nextflow
 ```
 mkdir /var/scratch/$USER/miseq_analysis/
 cd /var/scratch/$USER/miseq_analysis/
+mkdir results work
 ```
 - Symbolicly link our data to the to a directory in `scratch`
 ```
