@@ -787,7 +787,7 @@ NXF_OPTS='-Xms1g -Xmx4g'
   ```
   - Launch the analysis:
 ```
-nextflow run nf-core/viralrecon -r 2.4.1 -profile singularity -resume -params-file /var/scratch/global/$USER/miseq_analysis/nf-params.json
+nextflow run nf-core/viralrecon -r 2.4.1 -profile singularity -resume -work-dir /var/scratch/$USER/miseq_analysis/work -params-file /var/scratch/global/$USER/miseq_analysis/nf-params.json
 ```
 - Wait for the run to be completed.
 - Let us download the multiQC file and visualize as follows:
