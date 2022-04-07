@@ -743,7 +743,8 @@ singularity run /var/scratch/$USER/AfricaCDC_training/singularity/pangolin_lates
 ```
 
 
-##Running [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline.
+## Running [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline.
+
 The [nf-core](https://nf-co.re/) -"A community effort to collect a curated set of analysis pipelines built using Nextflow" - has [many pipelines that can be easily setup and used to analyse genomics data. We will be using [nf-core/viralrecon](https://nf-co.re/viralrecon) for our analysis. The most recent verion being [2.4.1](https://nf-co.re/viralrecon/2.4.1).
 
 To set it up we will follow the workflow in [Launch pipeline](https://nf-co.re/launch?id=1649311271_b34e829e5e3f).
