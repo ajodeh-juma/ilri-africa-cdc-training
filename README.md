@@ -761,8 +761,8 @@ interactive -w compute05
 ```
 - Symbolicly link our data to the to a directory in `scratch`
 ```
-mkdir /var/scratch/user10/miseq_analysis/
-cd /var/scratch/user10/miseq_analysis/
+mkdir /var/scratch/<user##>/miseq_analysis/
+cd /var/scratch/<user##>/miseq_analysis/
 ln -s /var/scratch/global/ilri_AuCDC/miseq ./
 ```
 - Now let us go back to [Launch pipeline](https://nf-co.re/launch?id=1649311271_b34e829e5e3f) and do step by step set up.
