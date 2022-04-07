@@ -781,6 +781,10 @@ ln -s /var/scratch/global/ilri_AuCDC/miseq/* ./
 module load nextflow/21.10
 NXF_OPTS='-Xms1g -Xmx4g'
 ```
+  -Change into working directory
+  ```
+  cd /var/scratch/$USER/miseq_analysis/
+  ```
   - Launch the analysis:
 ```
 nextflow run nf-core/viralrecon -r 2.4.1 -profile singularity -resume -params-file /var/scratch/global/$USER/miseq_analysis/nf-params.json
