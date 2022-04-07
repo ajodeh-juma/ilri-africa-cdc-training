@@ -759,10 +759,15 @@ ssh <username>@hpc.ilri.cgiar.org
 ```
 interactive -c 3 -J nextflow
 ```
+- Create a working directory in compute node:
+```
+mkdir /var/scratch/$USER/miseq_analysis/
+cd /var/scratch/$USER/miseq_analysis/
+```
 - Symbolicly link our data to the to a directory in `scratch`
 ```
-mkdir -p /var/scratch/global/<user##>/miseq_analysis/
-cd /var/scratch/global/<user##>/miseq_analysis/
+mkdir -p /var/scratch/global/$USER/miseq_analysis/
+cd /var/scratch/global/$USER/miseq_analysis/
 ln -s /var/scratch/global/ilri_AuCDC/miseq/* ./
 ```
 - Now let us go back to [Launch pipeline](https://nf-co.re/launch?id=1649311271_b34e829e5e3f) and do step by step set up.
