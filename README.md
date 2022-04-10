@@ -805,7 +805,7 @@ Aggregate results from bioinformatics analyses across many samples into a single
 
 1. Change to the output directory `multiqc_out`
     ```
-    $ cd /var/scratch/$USER/AfricaCDC_training/results/multiqc/
+    cd /var/scratch/$USER/AfricaCDC_training/results/multiqc/
     ```
 2. Aggregate tools' outputs
     ```
