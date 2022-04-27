@@ -254,8 +254,8 @@ interactive -w compute05
     fastqc \
         -t 1 \
         -o . \
-        /var/scratch/$USER/AfricaCDC_training/data/COVM02379_R1.fastq.gz \
-        /var/scratch/$USER/AfricaCDC_training/data/COVM02379_R2.fastq.gz
+        /var/scratch/$USER/AfricaCDC_training/data/sars1_R1.fastq.gz \
+        /var/scratch/$USER/AfricaCDC_training/data/sars1_R2.fastq.gz
     ```
     ***Optional***
         Run step 3. above for the other 2 samples.
@@ -274,13 +274,13 @@ The preceeding step will guide us on the possible filtering and trimming operati
     ```
     fastp \
         -w 1 \
-        -i /var/scratch/$USER/AfricaCDC_training/data/COVM02379_R1.fastq.gz \
-        -I /var/scratch/$USER/AfricaCDC_training/data/COVM02379_R2.fastq.gz \
-        -o COVM02379_R1.trim.fastq.gz \
-        -O COVM02379_R2.trim.fastq.gz \
-        -h COVM02379.fastp.html \
-        -j COVM02379.fastp.json \
-        2> COVM02379.fastp.log
+        -i /var/scratch/$USER/AfricaCDC_training/data/sars1_R1.fastq.gz \
+        -I /var/scratch/$USER/AfricaCDC_training/data/sars1_R2.fastq.gz \
+        -o sars1_R1.trim.fastq.gz \
+        -O sars1_R2.trim.fastq.gz \
+        -h sars1.fastp.html \
+        -j sars1.fastp.json \
+        2> sars1.fastp.log
     ```
 
     ***Optional***
@@ -320,21 +320,21 @@ In this tutorial, we will use pre-formatted kraken2 ```human``` database to iden
         kraken2 \
               -db /var/scratch/$USER/AfricaCDC_training/databases/kraken2-human-db \
               --threads 1 \
-              --unclassified-out COVM02379.unclassified#.fastq \
-              --classified-out COVM02379.classified#.fastq \
-              --report COVM02379.kraken2.report.txt \
-              --output COVM02379.kraken2.out \
+              --unclassified-out sars1.unclassified#.fastq \
+              --classified-out sars1.classified#.fastq \
+              --report sars1.kraken2.report.txt \
+              --output sars1.kraken2.out \
               --gzip-compressed \
               --report-zero-counts \
-              --paired /var/scratch/$USER/AfricaCDC_training/results/fastp/COVM02379_R1.trim.fastq.gz \
-              /var/scratch/$USER/AfricaCDC_training/results/fastp/COVM02379_R2.trim.fastq.gz
+              --paired /var/scratch/$USER/AfricaCDC_training/results/fastp/sars1_R1.trim.fastq.gz \
+              /var/scratch/$USER/AfricaCDC_training/results/fastp/sars1_R2.trim.fastq.gz
         ```
     **Quiz:** *How many reads have hit the human genome as targets in the sample(s)?*
 
     ---
     <details close>
       <summary>Answer</summary>
-      COVM02379  -  60529 reads    (13.00%)<br>
+      sars1  -  60529 reads    (13.00%)<br>
     </details>
 
     ---
@@ -372,14 +372,14 @@ Here we use [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml), an
     ```
     bowtie2 \
           -x /var/scratch/$USER/AfricaCDC_training/genome/bowtie2/nCoV-2019 \
-          -1 /var/scratch/$USER/AfricaCDC_training/results/kraken/COVM02379.unclassified_1.fastq \
-          -2 /var/scratch/$USER/AfricaCDC_training/results/kraken/COVM02379.unclassified_2.fastq \
+          -1 /var/scratch/$USER/AfricaCDC_training/results/kraken/sars1.unclassified_1.fastq \
+          -2 /var/scratch/$USER/AfricaCDC_training/results/kraken/sars1.unclassified_2.fastq \
           --threads 1 \
-          --un-conc-gz COVM02379.unmapped.fastq.gz \
+          --un-conc-gz sars1.unmapped.fastq.gz \
           --local \
           --very-sensitive-local \
-          2> COVM02379.bowtie2.log \
-          | samtools view -@ 1 -F4 -bhS -o COVM02379.trim.dec.bam -
+          2> sars1.bowtie2.log \
+          | samtools view -@ 1 -F4 -bhS -o sars1.trim.dec.bam -
     ```
     ***Optional***
         Run steps 1 and 2. above for the other 2 samples.
@@ -391,12 +391,12 @@ Alignments can often be manipulated using [```samtools```](http://www.htslib.org
 
 1. Sort the converted binary alignment (```.bam```)
     ```
-    samtools sort -@ 1 -o COVM02379.sorted.bam -T COVM02379 COVM02379.trim.dec.bam
+    samtools sort -@ 1 -o sars1.sorted.bam -T sars1 sars1.trim.dec.bam
     ```
 
 2. Index the sorted alignment
     ```
-    samtools index -@ 1 COVM02379.sorted.bam
+    samtools index -@ 1 sars1.sorted.bam
     ```
     ***Optional***
         Run steps 1 and 2. above for the other 2 samples.
@@ -414,22 +414,22 @@ iVar uses primer positions supplied in a BED file to soft clip primer sequences 
 
     ```
     ivar trim \
-        -i /var/scratch/$USER/AfricaCDC_training/results/bowtie2/COVM02379.sorted.bam \
+        -i /var/scratch/$USER/AfricaCDC_training/results/bowtie2/sars1.sorted.bam \
         -b /var/scratch/$USER/AfricaCDC_training/primer-schemes/V3/nCoV-2019.primer.bed \
-        -p COVM02379.primertrimmed \
+        -p sars1.primertrimmed \
         -m 30 \
-        -q 20 > COVM02379.ivar.log
+        -q 20 > sars1.ivar.log
     ```
 3. Sort the primer trimmed alignment
     ```
     samtools sort \
           -@ 1 \
-          -o COVM02379.primertrimmed.sorted.bam \
-          -T COVM02379 COVM02379.primertrimmed.bam
+          -o sars1.primertrimmed.sorted.bam \
+          -T sars1 sars1.primertrimmed.bam
     ```
 4. Index the sorted primer trimmed alignment
     ```
-    samtools index -@ 1 COVM02379.primertrimmed.sorted.bam
+    samtools index -@ 1 sars1.primertrimmed.sorted.bam
     ```
 
 
@@ -447,13 +447,13 @@ Here we will use [bedtools](https://github.com/arq5x/bedtools2), your swiss-army
         genomecov \
         -d \
         -ibam \
-        /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.primertrimmed.sorted.bam \
-        > COVM02379.coverage
+        /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.primertrimmed.sorted.bam \
+        > sars1.coverage
     ```
 3. Plot to visualize
 
     ```
-    Rscript /var/scratch/$USER/AfricaCDC_training/scripts/plotGenomecov.R COVM02379.coverage
+    Rscript /var/scratch/$USER/AfricaCDC_training/scripts/plotGenomecov.R sars1.coverage
     ```
 
 
@@ -499,8 +499,8 @@ In order to call variants correctly, the reference file used for alignment must 
             --max-depth 0 \
             --min-BQ 0 \
             --reference /var/scratch/$USER/AfricaCDC_training/genome/nCoV-2019.fasta \
-            /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.primertrimmed.sorted.bam \
-            | tee COVM02379.mpileup \
+            /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.primertrimmed.sorted.bam \
+            | tee sars1.mpileup \
             | ivar \
                 variants \
                 -t 0.25 \
@@ -508,16 +508,16 @@ In order to call variants correctly, the reference file used for alignment must 
                 -m 10 \
                 -g /var/scratch/$USER/AfricaCDC_training/genome/nCoV-2019.gff \
                 -r /var/scratch/$USER/AfricaCDC_training/genome/nCoV-2019.fasta \
-                -p COVM02379.variants
+                -p sars1.variants
     ```
 3. Convert the variants from ```.tsv``` to ```.vcf``` (Variant Call Format)
 
     ```
     python /var/scratch/$USER/AfricaCDC_training/scripts/ivar_variants_to_vcf.py \
-      COVM02379.variants.tsv \
-      COVM02379.vcf \
+      sars1.variants.tsv \
+      sars1.vcf \
       --pass_only \
-      --allele_freq_thresh 0.75 > COVM02379.variant.counts.log
+      --allele_freq_thresh 0.75 > sars1.variant.counts.log
     ```
     ##### **VCF file format**
 
@@ -544,16 +544,16 @@ In order to call variants correctly, the reference file used for alignment must 
 
 4. Compress vcf file
     ```
-    bgzip -c COVM02379.vcf > COVM02379.vcf.gz
+    bgzip -c sars1.vcf > sars1.vcf.gz
     ```
 
 5. Create tabix index from a sorted bgzip tab-delimited genome file
     ```
-    tabix -p vcf -f COVM02379.vcf.gz
+    tabix -p vcf -f sars1.vcf.gz
     ```
 6. Generate stats from VCF file
     ```
-    bcftools stats COVM02379.vcf.gz > COVM02379.stats.txt
+    bcftools stats sars1.vcf.gz > sars1.stats.txt
     ```
 
 
@@ -573,27 +573,27 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
         nCoV-2019 \
         -c /var/scratch/$USER/AfricaCDC_training/databases/snpeff_db/snpeff.config \
         -dataDir /var/scratch/$USER/AfricaCDC_training/databases/snpeff_db/data \
-        /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.vcf.gz \
-        > COVM02379.ann.vcf
+        /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.vcf.gz \
+        > sars1.ann.vcf
     ```
 3. Compress vcf file
     ```
-    bgzip -c COVM02379.ann.vcf > COVM02379.ann.vcf.gz
+    bgzip -c sars1.ann.vcf > sars1.ann.vcf.gz
     ```
 4. Rename the ```summary.html``` and ```genes.txt``` file
     ```
-    mv snpEff_summary.html COVM02379.summary.html
-    mv snpEff_genes.txt COVM02379.genes.txt
+    mv snpEff_summary.html sars1.summary.html
+    mv snpEff_genes.txt sars1.genes.txt
     ```
 
 5. Create tabix index from a sorted bgzip tab-delimited genome file
     ```
-    tabix -p vcf -f COVM02379.ann.vcf.gz
+    tabix -p vcf -f sars1.ann.vcf.gz
     ```
 
 6. Generate stats from VCF file
     ```
-    bcftools stats COVM02379.ann.vcf.gz > COVM02379.stats.txt
+    bcftools stats sars1.ann.vcf.gz > sars1.stats.txt
     ```
 
 7. Filter variants
@@ -603,7 +603,7 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
             extractFields \
             -s "," \
             -e "." \
-            COVM02379.ann.vcf.gz \
+            sars1.ann.vcf.gz \
             CHROM POS REF ALT \
             "ANN[*].GENE" "ANN[*].GENEID" \
             "ANN[*].IMPACT" "ANN[*].EFFECT" \
@@ -613,7 +613,7 @@ We will use [SnpEff](http://pcingola.github.io/SnpEff/se_introduction/). It anno
             "ANN[*].CDS_POS" "ANN[*].CDS_LEN" "ANN[*].AA_POS" \
             "ANN[*].AA_LEN" "ANN[*].DISTANCE" "EFF[*].EFFECT" \
             "EFF[*].FUNCLASS" "EFF[*].CODON" "EFF[*].AA" "EFF[*].AA_LEN" \
-            > COVM02379.snpsift.txt
+            > sars1.snpsift.txt
     ```
 
 
@@ -642,22 +642,22 @@ Minimum quality is the minimum quality of a base to be considered in calculation
             --max-depth 0 \
             --min-BQ 0 \
             -aa \
-            /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.primertrimmed.sorted.bam \
-            | tee COVM02379.mpileup \
+            /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.primertrimmed.sorted.bam \
+            | tee sars1.mpileup \
             | ivar \
                 consensus \
                 -t 0.75 \
                 -q 20 \
                 -m 10 \
                 -n N \
-                -p COVM02379.cons
+                -p sars1.cons
     ```
 The ```tee``` command reads from the standard input and writes to both standard output and one or more files at the same time. ```tee``` is mostly used in combination with other commands through piping.
 
 3. Rename the consensus genome header
 
     ```
-    sed -i '/^>/s/Consensus_\(.*\)_threshold.*/\1/' COVM02379.cons.fa
+    sed -i '/^>/s/Consensus_\(.*\)_threshold.*/\1/' sars1.cons.fa
     ```
 
 
@@ -672,7 +672,7 @@ The ```tee``` command reads from the standard input and writes to both standard 
 2. Perform clade assignment
     ```
     nextclade \
-       --input-fasta /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.cons.fa \
+       --input-fasta /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.cons.fa \
        --input-dataset /var/scratch/$USER/AfricaCDC_training/nextclade_db \
        --input-root-seq /var/scratch/$USER/AfricaCDC_training/nextclade_db/reference.fasta \
        --genes E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S \
@@ -680,16 +680,16 @@ The ```tee``` command reads from the standard input and writes to both standard 
        --input-tree /var/scratch/$USER/AfricaCDC_training/nextclade_db/tree.json \
        --input-qc-config /var/scratch/$USER/AfricaCDC_training/nextclade_db/qc.json \
        --input-pcr-primers /var/scratch/$USER/AfricaCDC_training/nextclade_db/primers.csv \
-       --output-csv /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.csv \
-       --output-tree /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.auspice.json \
+       --output-csv /var/scratch/$USER/AfricaCDC_training/results/nextclade/sars1.csv \
+       --output-tree /var/scratch/$USER/AfricaCDC_training/results/nextclade/sars1.auspice.json \
        --output-dir /var/scratch/$USER/AfricaCDC_training/results/nextclade/ \
-       --output-basename COVM02379.cons \
-       2> /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.nextclade.log
+       --output-basename sars1.cons \
+       2> /var/scratch/$USER/AfricaCDC_training/results/nextclade/sars1.nextclade.log
     ```
 
 3. Visualization: The output of Nextclade includes a phylogenetic tree in `.json` format. This tree can be visualized in [Auspice](https://auspice.us/). First let us download the the `.json` file:
 ```
-cp /var/scratch/$USER/AfricaCDC_training/results/nextclade/COVM02379.auspice.json ~/
+cp /var/scratch/$USER/AfricaCDC_training/results/nextclade/sars1.auspice.json ~/
 ```
 In your local computer use `scp` to copy the file to any desired destination:
 ```
@@ -731,15 +731,15 @@ singularity run /var/scratch/$USER/AfricaCDC_training/singularity/pangolin_lates
 4. Conduct Pangolin Lineage assignment:
 ```
 singularity run /var/scratch/$USER/AfricaCDC_training/singularity/pangolin_latest.sif
-          pangolin /var/scratch/$USER/AfricaCDC_training/results/ivar/COVM02379.cons.fa \
+          pangolin /var/scratch/$USER/AfricaCDC_training/results/ivar/sars1.cons.fa \
           --alignment \
           --usher \
           --max-ambig 0.3 \
           --min-length 25000 \
           --outdir /var/scratch/$USER/AfricaCDC_training/results/pangolin/ \
-          --outfile COVM02379.pangolin.usher.csv \
+          --outfile sars1.pangolin.usher.csv \
           --datadir /var/scratch/$USER/AfricaCDC_training/pangolin_db/ \
-          2> /var/scratch/$USER/AfricaCDC_training/results/pangolin/COVM02379.pangolin.usher.log
+          2> /var/scratch/$USER/AfricaCDC_training/results/pangolin/sars1.pangolin.usher.log
 ```
 
 
