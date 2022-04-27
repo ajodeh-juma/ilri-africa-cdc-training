@@ -126,17 +126,17 @@ interactive -w compute05
 #### ***Data retrieval and integrity checks***
 1. While there are specialised tools for data retieval from nucleotide sequence databases, universal `Unix` command (`wget`) can be used to download data over internet.
     ```
-    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.tar.gz
+    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars-fastqs.tar.gz
     ```
 2. After downloading your data, say from a sequencing facility site, it is often good practice to verify that your data was not intentionally/accidentally tampered with. To do this, your data service provider will likely accompany your data with a file containing a verification code: `checksum_file` (***will be provided***). The `md5sum` command, using the `-c` (check) tag, allows for checking the integrity of a file downloaded or acquired from a different source.
     ```
-    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/fastq-metadata.md5
+    wget --no-check-certificate https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars-fastqs.md5
     ls
-    md5sum -c fastq-metadata.md5
+    md5sum -c sars-fastqs.md5
     ```
 3. Next, we will unzip the file using `tar` with the `-xf` (extract, file; respectively) tags, which tells `tar` extract the given file.
     ```
-    tar -xf fastq-metadata.tar.gz
+    tar -xf sars-fastqs.tar.gz
     ls
     ```
 4.  Download SARS-CoV-2 reference genome and the genome annotation file.
