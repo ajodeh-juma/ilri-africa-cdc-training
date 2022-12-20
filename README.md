@@ -932,7 +932,8 @@ What are some of the issues you notice with the above metadata?
 ---
 
 ***Computation-wise, whichever way (poor/good) you choose to organise your data, ensure consistency***.
-##Galaxy Tutorial
+            
+## Galaxy Tutorial
 https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2-variant-discovery/tutorial.html
 
             
