@@ -67,7 +67,7 @@ in Africa.
 
 We will use a dataset comprising of raw sequence reads of SARS-CoV-2 samples
 obtained from a sequencing run on NextSeq 550 platorm at [ILRI](www.ilri.org).
-NextSeq 550 flowcell uses 4 lanes; and so, 4 reads of data per sequenced sample corresponding to the 4
+NextSeq 550 flowcell uses 4 lanes; and so, 4 reads of data per sequenced sample corresponding to the https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R1.fastq.gz https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R2.fastq.gz https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R1.fastq.gz https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R2.fastq.gz https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R1.fastq.gz https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R2.fastq.gz4
 lanes are generated with suffixes L001, L002, L003 and L004. The dataset we are
 using in this tutorial comprises of already concatenated sequences. These reads
 can be combined/concatenated into a single file bearing in mind the type of library
@@ -938,12 +938,14 @@ https://training.galaxyproject.org/training-material/topics/variant-analysis/tut
 
             
 ## Data
+```
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R1.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R2.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R1.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R2.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R1.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R2.fastq.gz
+```
 
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
