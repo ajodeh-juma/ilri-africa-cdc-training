@@ -935,5 +935,14 @@ What are some of the issues you notice with the above metadata?
 ##Galaxy Tutorial
 https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2-variant-discovery/tutorial.html
 
+            
+## Data
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R1.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars1_R2.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R1.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars2_R2.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R1.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R2.fastq.gz
+
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
