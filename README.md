@@ -1003,6 +1003,19 @@ https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/C
 https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02720_S365_con_R1_001.fastq.gz
 https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02720_S365_con_R2_001.fastq.gz          
 ```            
-            
+
+### Additional Illumina data
+```
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample1_S2_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample1_S2_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample2_S1_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample2_S1_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample3_S3_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample3_S3_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample4_S6_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample4_S6_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample5_S8_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample5_S8_L001_R2_001.fastq.gz            
+```            
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
