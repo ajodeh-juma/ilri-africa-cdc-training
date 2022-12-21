@@ -974,7 +974,8 @@ Now that we have downloaded this file we can go to a Galaxy instance and start p
 We will follow these steps, highlighted in https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2/tutorial.html to get a subset of the data:
     
 1. Process and filter ```SraRunInfo.csv``` file in Galaxy
-2. Download sequencing data with ```Faster Download and Extract Reads in FASTQ```
+2. Here the `sra accessions` we will use are: `SRR22561688` and `SRR22561690`
+3. Download sequencing data with ```Faster Download and Extract Reads in FASTQ```
             
             
 ### Repeat the analysis by using data generated from our lab:
