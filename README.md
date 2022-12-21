@@ -1,6 +1,6 @@
 ---
 title: README.md
-tags: ["SARS-CoV-2", "Genomics", "Bioinformatics", "Metadata", "Linux", "Analysis"]
+tags: ["SARS-CoV-2", "Genomics", "Bioinformatics", "Metadata", "Linux", "Analysis", "Activity"]
 ---
 # **Building capacity in SARS-CoV-2 genomics in Africa**
 ---
@@ -40,6 +40,8 @@ tags: ["SARS-CoV-2", "Genomics", "Bioinformatics", "Metadata", "Linux", "Analysi
     - [Reviewing data: ONT](#reviewing-data-ont)
 - [Working with metadata](#working-with-metadata)
 - [Galaxy workflows for SARS-CoV-2 data analysis](#galaxy-workflows-for-sars-cov-2-data-analysis)
+- [Activity](#Activity)
+    -[Galaxy Exercise](#Galaxy-Exercise-using-MiSeq-Data)
 
 
 ## Introduction
@@ -986,5 +988,23 @@ https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode87.fastq.gz
 https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode88.fastq.gz
 https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode89.fastq.gz
 ```
+
+## Galaxy Exercise using MiSeq Data            
+This activity it to help you practice the analysis on illumina data using the [Galaxy workflow](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2-variant-discovery/tutorial.html
+).
+You are encouraged to change the parameters including: sample IDs (names), coverage depth cutoffs,...            
+
+### Data
+```
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV5959_S1_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV5959_S1_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6335_S98_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6335_S98_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6338_S101_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6338_S101_L001_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6639_S202_L001_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6639_S202_L001_R2_001.fastq.gz            
+```            
+            
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
