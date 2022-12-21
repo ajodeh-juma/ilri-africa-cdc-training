@@ -40,8 +40,8 @@ tags: ["SARS-CoV-2", "Genomics", "Bioinformatics", "Metadata", "Linux", "Analysi
     - [Reviewing data: ONT](#reviewing-data-ont)
 - [Working with metadata](#working-with-metadata)
 - [Galaxy workflows for SARS-CoV-2 data analysis](#galaxy-workflows-for-sars-cov-2-data-analysis)
-- [Activity](#Activity)
-    -[Galaxy Exercise](#Galaxy-Exercise-using-MiSeq-Data)
+- [Activity](#activity)
+    - [Galaxy Exercise](#galaxy-exercise-using-miseq-data)
 
 
 ## Introduction
@@ -989,11 +989,13 @@ https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode88.fastq.gz
 https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode89.fastq.gz
 ```
 
+## Activity            
+            
 ## Galaxy Exercise using MiSeq Data            
 This activity it to help you practice the analysis on illumina data using the [Galaxy workflow](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2-variant-discovery/tutorial.html
-).
+).      
 You are encouraged to change the parameters including: sample IDs (names), coverage depth cutoffs,...            
-
+Follow the steps as guided we used in the analysis of Illumina sequenced data  
 ### Data
 ```
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV5959_S1_L001_R1_001.fastq.gz
