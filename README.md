@@ -947,5 +947,10 @@ https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R1.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/sars3_R2.fastq.gz
 ```
 
+#### ***Oxford Nanopore ARTIC data analysis with Galaxy***
+
+## Find data on SRA
+First we need to find a good dataset to play with. The [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra) is the primary archive of unassembled reads operated by the US [National Institutes of Health (NIH)](https://www.ncbi.nlm.nih.gov/). SRA is a great place to get the sequencing data that underlie publications and studies. Let’s do that:
+
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
