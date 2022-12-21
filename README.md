@@ -998,11 +998,10 @@ You are encouraged to change the parameters including: sample IDs (names), cover
 Follow the steps as guided we used in the analysis of Illumina sequenced data  
 ### Data
 ```
-https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/COVM02379_S37_con_R1_001.fastq.gz
-https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/COVM02379_S37_con_R2_001.fastq.gz
-https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/COVM02720_S365_con_R1_001.fastq.gz
-https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/COVM02720_S365_con_R2_001.fastq.gz
-          
+https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02379_S37_con_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02379_S37_con_R2_001.fastq.gz
+https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02720_S365_con_R1_001.fastq.gz
+https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02720_S365_con_R2_001.fastq.gz          
 ```            
             
 ---
