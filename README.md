@@ -974,6 +974,16 @@ Now that we have downloaded this file we can go to a Galaxy instance and start p
 We will follow these steps, highlighted in https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2/tutorial.html to get a subset of the data:
     
 1. Process and filter ```SraRunInfo.csv``` file in Galaxy
-2. Download sequencing data with ```Faster Download and Extract Reads in FASTQ```   
+2. Download sequencing data with ```Faster Download and Extract Reads in FASTQ```
+            
+            
+### Repeat the analysis by using data generated from our lab:
+```
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode85.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode86.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode87.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode88.fastq.gz
+https://hpc.ilri.cgiar.org/~gkibet/SARS-ONT/fastq/barcode89.fastq.gz
+```
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
