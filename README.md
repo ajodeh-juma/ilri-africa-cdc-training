@@ -963,11 +963,16 @@ First we need to find a good dataset to play with. The [Sequence Read Archive (S
 2. In the search box enter PRJNA909758 and click Search button. (Alternatively, you simply click on this [link](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA909758))
 3. Download metadata describing these datasets by:
 
-    clicking on **Send** to: dropdown
-    Selecting **File**
-    Changing Format to **RunInfo**
-    Clicking **Create file**
+    - clicking on **Send** to: dropdown
+    - Selecting **File**
+    - Changing Format to **RunInfo**
+    - Clicking **Create file**
 4. This would create a rather large `SraRunInfo.csv` file in your `Downloads` folder.
 
+Now that we have downloaded this file we can go to a Galaxy instance and start processing it.
+            
+We will follow these steps, highlighted in https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/sars-cov-2/tutorial.html to get a subset of the data:
+    - Process and filter `SraRunInfo.csv` file in Galaxy
+    - Download sequencing data with `Faster Download and Extract Reads in FASTQ`   
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
