@@ -1001,11 +1001,7 @@ Follow the steps as guided we used in the analysis of Illumina sequenced data
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV5959_S1_L001_R1_001.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV5959_S1_L001_R2_001.fastq.gz
 https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6335_S98_L001_R1_001.fastq.gz
-https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6335_S98_L001_R2_001.fastq.gz
-https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6338_S101_L001_R1_001.fastq.gz
-https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6338_S101_L001_R2_001.fastq.gz
-https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6639_S202_L001_R1_001.fastq.gz
-https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6639_S202_L001_R2_001.fastq.gz            
+https://hpc.ilri.cgiar.org/~douso/AfricaCDC_training/trainingTrialFastq/CV6335_S98_L001_R2_001.fastq.gz           
 ```            
             
 ---
