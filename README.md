@@ -1004,7 +1004,8 @@ https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/C
 https://hpc.ilri.cgiar.org/~jjuma/SARS-CoV-2-ILRI-WHO-2022/testdata-subsampled/COVM02720_S365_con_R2_001.fastq.gz          
 ```            
 
-### Additional Illumina data
+### Additional Illumina data.
+The data below comes from a MiSeq sequencer            
 ```
 https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample1_S2_L001_R1_001.fastq.gz
 https://hpc.ilri.cgiar.org/~gkibet/SARS-ILL/fastq/sample1_S2_L001_R2_001.fastq.gz
