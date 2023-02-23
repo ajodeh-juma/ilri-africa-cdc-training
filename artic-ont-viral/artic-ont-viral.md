@@ -552,7 +552,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     ```
     artic_vcf_merge \
         ERR3790222 \
-        /var/scratch/$USER/primer-schemes/DENV2/DENV2.primer.bed 2>ERR3790222.primersitereport.txt \
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed 2>ERR3790222.primersitereport.txt \
         2:ERR3790222.2.vcf \
         1:ERR3790222.1.vcf
     ```
