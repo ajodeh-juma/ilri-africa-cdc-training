@@ -457,7 +457,7 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
 3. Trim alignments
 
     ```
-    artic-tools align_trim \
+    /export/apps/artic-tools/0.3.1/bin/artic-tools align_trim \
         --normalise 200 \
         --start \
         --remove-incorrect-pairs \
@@ -471,7 +471,7 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
     ```
 
     ```
-    artic-tools align_trim \
+    /export/apps/artic-tools/0.3.1/bin/artic-tools align_trim \
       --normalise 200 \
       --remove-incorrect-pairs \
       --report ERR3790222.alignreport.txt \
