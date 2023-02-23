@@ -143,6 +143,8 @@ specified node within the computing cluster using the `-w` flag.
     module load edirect/7.80
     module load fastqc/0.11.9
     module load artic/1.2.3
+    module load bedtools/2.29.0
+    module load R/4.2
     ```
 6. Hit the `ENTER` key
 
