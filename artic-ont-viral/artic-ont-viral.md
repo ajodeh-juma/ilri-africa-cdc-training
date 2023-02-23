@@ -489,7 +489,7 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
     ```
     
     ```
-    samtools index ERR379022.primertrimmed.rg.sorted.bam
+    samtools index ERR3790222.primertrimmed.rg.sorted.bam
     ```
 **Quiz:** *Compute alignment statistics using `samtools`. What is the mapping
 rate of the primer trimmed alignemnts?*
