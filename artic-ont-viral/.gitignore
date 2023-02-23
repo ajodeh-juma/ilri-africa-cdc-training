@@ -1,0 +1,5 @@
+data/*
+output/*
+genomes/*
+*.DS_Store
+*.idea

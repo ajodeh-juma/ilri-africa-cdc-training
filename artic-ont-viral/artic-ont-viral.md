@@ -2,7 +2,7 @@
 title: README.md
 tags: ["Pathogen genomics", "Genomic surveillance", "Bioinformatics", "Metadata", "Linux", "Analysis"]
 ---
-# **Building capacity in pathogen genomics in Africa**
+# **Dengue virus sequence data analysis using the artic workflow**
 ---
 ###### ***Trainers***: [John Juma](https://github.com/ajodeh-juma), [Gilbert Kibet](https://github.com/kibet-gilbert) & [Kennedy Mwangi](https://github.com/ousodaniel)
 ---
