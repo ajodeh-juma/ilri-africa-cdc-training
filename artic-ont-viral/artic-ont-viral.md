@@ -331,7 +331,9 @@ of the amplicon lengths.
         --max-length 800 \
         --directory /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/ \
         --output ERR3790222-len400_800.fastq >>ERR3790222-len400_800.log 2>&1
+    ```
 
+    ```
     pigz --no-name --processes 8 ERR3790222-len400_800.fastq
     ```
 
