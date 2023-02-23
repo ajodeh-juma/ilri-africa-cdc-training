@@ -470,6 +470,15 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
     samtools index ERR379022.trimmed.rg.sorted.bam
     ```
 
+    We can count the read alignments belonging to each read group using the command
+    ```
+    samtools view ERR3790222.trimmed.rg.sorted.bam | awk '{ print $22 }' | grep 'RG:Z:1' | wc -l
+    ```
+    >**<strong style="color:magenta;opacity: 0.80 ">Quiz:</strong>**
+    - How many read alignments are assigned to read group 2?
+
+
+
     ```
     /export/apps/artic-tools/0.3.1/bin/artic-tools align_trim \
       --normalise 200 \
