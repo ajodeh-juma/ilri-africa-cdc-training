@@ -509,7 +509,12 @@ reads to the signal data.
 
 In this step, we will use `medaka`, a tool to create consensus sequences and variant calls from nanopore sequencing data. This task is performed using neural networks applied a pileup of individual sequencing reads against a draft assembly. It provides state-of-the-art results outperforming sequence-graph based methods and signal-based methods, whilst also being faster.
 
-1. Generate a consensus sequence for each read group as determined by the primer
+1. Change to the `medaka` directory.
+    ```
+    cd /var/scratch/$USER/ont-artic/output/dataset-002/medaka/
+    ```
+
+2. Generate a consensus sequence for each read group as determined by the primer
    pools
 
     ```
@@ -530,7 +535,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         ERR3790222.2.hdf
     ```
 
-2. Identify variants including <strong style="color:grey;opacity: 0.80;">
+3. Identify variants including <strong style="color:grey;opacity: 0.80;">
    detection of INDELS</strong> for each read group.
 
    ```
@@ -547,7 +552,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     ERR3790222.2.vcf
    ```
 
-3. Merge, compress and index vcf files
+4. Merge, compress and index vcf files
 
     ```
     artic_vcf_merge \
@@ -565,7 +570,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     tabix -f -p vcf ERR3790222.merged.vcf.gz
     ```
 
-4. Annotate INDELS, filter, compress and filter vcfs
+5. Annotate INDELS, filter, compress and filter vcfs
 
 - `-P` Remove a variant if the allele observations are biased toward one strand
 (forward or reverse) according to Fisher's exact test. 
@@ -582,7 +587,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         -F \
         -A \
         --no_haps \
-        --bam /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        --bam ERR3790222.primertrimmed.rg.sorted.bam \
         --ref /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
         --out ERR3790222.merged.vcf \
         --potential_variants ERR3790222.merged.vcf.gz
