@@ -1,0 +1,23 @@
+tools to request for installation
+
+artic
+artic-tools
+artic-porechop
+nanoplot
+pycoqc
+
+
+# references
+https://virologyj.biomedcentral.com/articles/10.1186/s12985-020-1294-6
+
+
+# visualize
+screenshots
+alignment - tablet/igv
+
+fastqc output - text files with modules
+
+lecture/presentation on amplicons generation with primalscheme - lengths
+- quality check in the artic guppyplex part
+
+simpler way of explaining indexing of the reference genome, indexing and sorting of alignments 
