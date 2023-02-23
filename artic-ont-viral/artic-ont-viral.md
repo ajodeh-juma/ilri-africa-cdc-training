@@ -699,7 +699,7 @@ arithmetic and interval manipulation tool.
         genomecov \
         -d \
         -ibam \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        /var/scratch/$USER/ont-artic/output/dataset-002/minimap2/ERR3790222.primertrimmed.rg.sorted.bam \
         > ERR3790222.coverage
     ```
 3. Plot to visualize
