@@ -626,7 +626,7 @@ in the reference sequence failed the coverage threshold.
     artic_make_depth_mask \
         --store-rg-depths \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        /var/scratch/$USER/ont-artic/output/dataset-002/minimap2/ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.coverage_mask.txt
     ```
 
