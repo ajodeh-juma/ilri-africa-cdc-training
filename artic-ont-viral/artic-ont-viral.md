@@ -388,8 +388,11 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
 
 3. Index the `sorted` alignment
     ```
-
     samtools index ERR3790222.sorted.bam
+    ```
+4. Compute alignment statistics
+    ```
+    samtools flagstat ERR3790222.sorted.bam
     ```
 
     >**<strong style="color:yellow;opacity: 0.80;">Optional</strong>**
@@ -420,14 +423,14 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
         ```
 
 
-3. Compute alignment statistics
+5. Compute alignment statistics
     ```
     samtools flagstat ERR3790222.sorted.bam
     ```
     >**<strong style="color:magenta;opacity: 0.80 ">Quiz:</strong>**
     - What is the percentage of mapped reads using `minimap2`?
 
-4. Inspect the first few lines of the `sorted` alignment `BAM` file using `samtools view` command
+6. Inspect the first few lines of the `sorted` alignment `BAM` file using `samtools view` command
     ```
     samtools view ERR3790222.sorted.bam | less -S
     ```
