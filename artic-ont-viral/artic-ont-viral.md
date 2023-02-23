@@ -147,7 +147,9 @@ specified node within the computing cluster using the `-w` flag.
     module load longshot/0.4.5
     module load bwa/0.7.17
     ```
+6. Hit the `ENTER` key
 
+7. List loaded modules
 
 #### ***Fetching data from public databases***
 1. We will use pre-downloaded datasets available as soft links created in the
@@ -230,7 +232,7 @@ of your data
         -t 1 \
         --extract \
         -o . \
-        /var/scratch/jjuma/ont-artic/data/dataset-002/ERR3790222/ERR3790222.fastq
+        /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/ERR3790222.fastq
     ```
 
 3. Inspect the output file `fastqc_data.txt`
@@ -309,9 +311,11 @@ of the amplicon lengths.
     artic guppyplex \
         --min-length 356 \
         --max-length 588 \
-        --directory /var/scratch/jjuma/ont-artic/data/dataset-002/ERR3790222/ \
+        --directory /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/ \
         --output ERR3790222.fastq >>ERR3790222.log 2>&1
+    ```
 
+    ```
     pigz --no-name --processes 8 ERR3790222.fastq
     ```    
 
@@ -325,7 +329,7 @@ of the amplicon lengths.
     artic guppyplex \
         --min-length 400 \
         --max-length 800 \
-        --directory /var/scratch/jjuma/ont-artic/data/dataset-002/ERR3790222/ \
+        --directory /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/ \
         --output ERR3790222-len400_800.fastq >>ERR3790222-len400_800.log 2>&1
 
     pigz --no-name --processes 8 ERR3790222-len400_800.fastq
@@ -455,21 +459,25 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
         --normalise 200 \
         --start \
         --remove-incorrect-pairs \
-        --report ERR379022.alignreport.txt" \
-        <ERR379022.sorted.bam \
-        /var/scratch/$USER/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR379022.trimmed.rg.sorted.bam
+        --report ERR3790222.alignreport.txt \
+        <ERR3790222.sorted.bam \
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.trimmed.rg.sorted.bam
+    ```
 
-        samtools index ERR379022.trimmed.rg.sorted.bam
+    ```
+    samtools index ERR379022.trimmed.rg.sorted.bam
     ```
 
     ```
     artic-tools align_trim \
       --normalise 200 \
       --remove-incorrect-pairs \
-      --report ERR379022.alignreport.txt \
+      --report ERR3790222.alignreport.txt \
       <ERR379022.trimmed.rg.sorted.bam \
-      /var/scratch/$USER/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR379022.primertrimmed.rg.sorted.bam
-
+      /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.primertrimmed.rg.sorted.bam
+    ```
+    
+    ```
     samtools index ERR379022.primertrimmed.rg.sorted.bam
     ```
 **Quiz:** *Compute alignment statistics using `samtools`. What is the mapping
@@ -494,12 +502,11 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
    pools
 
     ```
-    module load artic
     medaka consensus \
         --model r941_min_high_g360 \
         --threads 1 \
         --RG 1 \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR379022.primertrimmed.rg.sorted.bam \
+        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.1.hdf
     ```
 
@@ -508,7 +515,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         --model r941_min_high_g360 \
         --threads 1 \
         --RG 2 \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR379022.primertrimmed.rg.sorted.bam \
+        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.2.hdf
     ```
 
@@ -540,8 +547,8 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     ```
 
     ```
-    bgzip -f ERR379022.merged.vcf
-    tabix -f -p vcf ERR379022.merged.vcf.gz
+    bgzip -f ERR3790222.merged.vcf
+    tabix -f -p vcf ERR3790222.merged.vcf.gz
     ```
 
 4. Annotate INDELS, filter, compress and filter vcfs
@@ -561,22 +568,22 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         -F \
         -A \
         --no_haps \
-        --bam /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR379022.primertrimmed.rg.sorted.bam \
+        --bam /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
         --ref /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
         --out ERR3790222.merged.vcf \
-        --potential_variants ERR379022.merged.vcf.gz
+        --potential_variants ERR3790222.merged.vcf.gz
     ```
 Filter the merged variant file through a set of workflow specific checks and assign all variants as either PASS or FAIL. The final PASS file is subsequently indexed ready for the next stage.
 
     ```
     artic_vcf_filter \
-        --medaka ERR379022.merged.vcf \
-        ERR379022.pass.vcf \
-        ERR379022.fail.vcf
+        --medaka ERR3790222.merged.vcf \
+        ERR3790222.pass.vcf \
+        ERR3790222.fail.vcf
     ```
 
     ```
-    tabix -p vcf ERR379022.pass.vcf.gz
+    tabix -p vcf ERR3790222.pass.vcf.gz
     ```
 
 
@@ -595,7 +602,7 @@ in the reference sequence failed the coverage threshold.
     artic_make_depth_mask \
         --store-rg-depths \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR379022.primertrimmed.rg.sorted.bam \
+        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.coverage_mask.txt
     ```
 
@@ -604,27 +611,27 @@ in the reference sequence failed the coverage threshold.
     ```
     artic_mask \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
-        ERR379022.coverage_mask.txt \
-        ERR379022.fail.vcf \
-        ERR379022.preconsensus.fasta
+        ERR3790222.coverage_mask.txt \
+        ERR3790222.fail.vcf \
+        ERR3790222.preconsensus.fasta
     ```
 
 3. Generate preconsensus sequence
 
     ```
     bcftools consensus \
-        -f ERR379022.preconsensus.fasta \
-        ERR379022.pass.vcf.gz \
-        -m ERR379022.coverage_mask.txt \
-        -o ERR379022.consensus.fasta
+        -f ERR3790222.preconsensus.fasta \
+        ERR3790222.pass.vcf.gz \
+        -m ERR3790222.coverage_mask.txt \
+        -o ERR3790222.consensus.fasta
     ```
 
 4. Rename the header of the consensus
 
     ```
     artic_fasta_header \
-        ERR379022.consensus.fasta \
-        "ERR379022/ARTIC/medaka"
+        ERR3790222.consensus.fasta \
+        "ERR3790222/ARTIC/medaka"
     ```
 
 ##### **VCF file format**
@@ -668,13 +675,13 @@ arithmetic and interval manipulation tool.
         genomecov \
         -d \
         -ibam \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR379022.primertrimmed.rg.sorted.bam \
-        > ERR379022.coverage
+        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        > ERR3790222.coverage
     ```
 3. Plot to visualize
 
     ```
-    Rscript /var/scratch/$USER/ont-artic/scripts/plotGenomecov.R ERR379022.coverage
+    Rscript /var/scratch/$USER/ont-artic/scripts/plotGenomecov.R ERR3790222.coverage
     ```
 
 > **Note**

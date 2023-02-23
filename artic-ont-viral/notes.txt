@@ -10,7 +10,8 @@ pycoqc
 # references
 https://virologyj.biomedcentral.com/articles/10.1186/s12985-020-1294-6
 
-
+# fetching data
+search for specific terms e.g dengue virus genome from the NCBI under database.
 # visualize
 screenshots
 alignment - tablet/igv
