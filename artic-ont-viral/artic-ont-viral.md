@@ -708,7 +708,7 @@ arithmetic and interval manipulation tool.
     Rscript /var/scratch/$USER/ont-artic/scripts/plotGenomecov.R ERR3790222.coverage
     ```
 4. Copy the output `ERR3790222.genome.coverage.pdf` to your computer and open.
-   If unable to copy it to your computer, visualize the file [here](#https://hpc.ilri.cgiar.org/~jjuma/ont-artic/output/dataset-002/bedtools/ERR3790222.genome.coverage.pdf)
+   If unable to copy it to your computer, visualize the file [here](https://hpc.ilri.cgiar.org/~jjuma/ont-artic/output/dataset-002/bedtools/ERR3790222.genome.coverage.pdf)
 
 > **Note**
 
