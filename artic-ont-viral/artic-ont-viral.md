@@ -587,7 +587,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         -F \
         -A \
         --no_haps \
-        --bam ERR3790222.primertrimmed.rg.sorted.bam \
+        --bam /var/scratch/$USER/ont-artic/output/dataset-002/minimap2/ERR3790222.primertrimmed.rg.sorted.bam \
         --ref /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
         --out ERR3790222.merged.vcf \
         --potential_variants ERR3790222.merged.vcf.gz
