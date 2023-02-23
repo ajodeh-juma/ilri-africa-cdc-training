@@ -26,6 +26,7 @@ tags: ["Pathogen genomics", "Genomic surveillance", "Bioinformatics", "Metadata"
     - [Post-processing alignment](#post-processing-alignment)
     - [Variant calling](#variant-calling)
     - [Consensus building](#consensus-building)
+    - [Visualizing alignments with IGV](#visualizing-alignments-with-igv)
 
 
 ## Introduction
@@ -648,7 +649,9 @@ The header contains keywords that optionally semantically and      syntactically
 | 8 |  INFO        |An extensible list of key-value pairs (fields) describing the variation.                                                          |
 | 9 |  FORMAT      |An (optional) extensible list of fields for describing the samples                                                          |
 | + |  SAMPLES     |For each (optional) sample described in the file, values are given for the fields listed in FORMAT                                                           |
-
+#### ***Visualizing alignments with IGV***
+><img src="img/Screen Shot 2023-02-22 at 16.47.55.png" alt="Artic pipeline workflow"
+    >style="height:>px; width:27212px;"/>
 
 #### ***Compute coverage***
 Here we will use [bedtools](https://github.com/arq5x/bedtools2), a genomic
