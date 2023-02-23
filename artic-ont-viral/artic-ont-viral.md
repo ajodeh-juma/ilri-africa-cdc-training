@@ -517,7 +517,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         --model r941_min_high_g360 \
         --threads 1 \
         --RG 1 \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.1.hdf
     ```
 
@@ -526,7 +526,7 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         --model r941_min_high_g360 \
         --threads 1 \
         --RG 2 \
-        /var/scratch/$USER/ont-artic/output/dataset-002/medaka/ERR3790222.primertrimmed.rg.sorted.bam \
+        ERR3790222.primertrimmed.rg.sorted.bam \
         ERR3790222.2.hdf
     ```
 
