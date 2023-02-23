@@ -142,10 +142,7 @@ specified node within the computing cluster using the `-w` flag.
     module load sra-tools/3.0.0
     module load edirect/7.80
     module load fastqc/0.11.9
-    module load artic-tools/0.3.1
-    module load medaka/1.4.3
-    module load longshot/0.4.5
-    module load bwa/0.7.17
+    module load artic/1.2.3
     ```
 6. Hit the `ENTER` key
 
