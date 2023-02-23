@@ -160,10 +160,10 @@ specified node within the computing cluster using the `-w` flag.
     >the data
     >We can fetch the raw data in FASTQ format using `sra-tools` from the European Nucleotide
     Archive [(ENA)](https://www.ebi.ac.uk/ena/browser/) database.
-        >```
+    ```
         mkdir /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222
         fasterq-dump --split-3 --threads 1 --outdir /var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/ ERR3790222
-        ```
+    ```
 
     >The above command will download the raw data file in FASTQ format in the
     >directory `/var/scratch/$USER/ont-artic/data/dataset-002/ERR3790222/`. You can
