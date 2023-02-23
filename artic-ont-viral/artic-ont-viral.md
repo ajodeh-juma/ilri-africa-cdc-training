@@ -603,6 +603,10 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     ```
 
     ```
+    bgzip -f ERR3790222.pass.vcf
+    ```
+
+    ```
     tabix -p vcf ERR3790222.pass.vcf.gz
     ```
 
