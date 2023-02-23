@@ -313,7 +313,7 @@ of the amplicon lengths.
     ```
 
     ```
-    pigz --no-name --processes 8 ERR3790222.fastq
+    pigz --no-name --processes 1 ERR3790222.fastq
     ```    
 
     For SARS-CoV-2, we normally use a length filter here of between 400 and 800 to remove obviously
@@ -331,7 +331,7 @@ of the amplicon lengths.
     ```
 
     ```
-    pigz --no-name --processes 8 ERR3790222-len400_800.fastq
+    pigz --no-name --processes 1 ERR3790222-len400_800.fastq
     ```
 
     >**<strong style="color:magenta;opacity: 0.80;">Quiz:</strong>**
@@ -381,7 +381,7 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
     minimap2 \
         -a \
         -x map-ont \
-        -t 8 \
+        -t 1 \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
         /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz | samtools view -bS -F 4 - | samtools sort -o ERR3790222.sorted.bam -
     ```
