@@ -550,6 +550,9 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
 
     ```
     bgzip -f ERR3790222.merged.vcf
+    ```
+
+    ```
     tabix -f -p vcf ERR3790222.merged.vcf.gz
     ```
 
@@ -575,8 +578,9 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
         --out ERR3790222.merged.vcf \
         --potential_variants ERR3790222.merged.vcf.gz
     ```
-Filter the merged variant file through a set of workflow specific checks and assign all variants as either PASS or FAIL. The final PASS file is subsequently indexed ready for the next stage.
-
+    Filter the merged variant file through a set of workflow specific checks and
+    assign all variants as either PASS or FAIL. The final PASS file is subsequently
+    indexed ready for the next stage.
     ```
     artic_vcf_filter \
         --medaka ERR3790222.merged.vcf \
