@@ -630,7 +630,7 @@ in the reference sequence failed the coverage threshold.
         ERR3790222.coverage_mask.txt
     ```
 
-2. Mask low depth regions
+2. Mask low depth regions and generate preconsensus
 
     ```
     artic_mask \
@@ -640,7 +640,7 @@ in the reference sequence failed the coverage threshold.
         ERR3790222.preconsensus.fasta
     ```
 
-3. Generate preconsensus sequence
+3. Generate consensus sequence with `bcftools`
 
     ```
     bcftools consensus \
