@@ -459,13 +459,12 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
 3. Trim alignments
 
     ```
-    /export/apps/artic-tools/0.3.1/bin/artic-tools align_trim \
-        --normalise 200 \
+    artic-tools align_trim \
         --start \
-        --remove-incorrect-pairs \
+        --normalise 100 \
         --report ERR3790222.alignreport.txt \
-        <ERR3790222.sorted.bam \
-        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.trimmed.rg.sorted.bam
+        < ERR3790222.sorted.bam \
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort -T ERR3790222 - -o ERR3790222.trimmed.rg.sorted.bam
     ```
 
     ```
@@ -473,12 +472,12 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
     ```
 
     ```
-    /export/apps/artic-tools/0.3.1/bin/artic-tools align_trim \
-      --normalise 200 \
-      --remove-incorrect-pairs \
-      --report ERR3790222.alignreport.txt \
-      <ERR3790222.trimmed.rg.sorted.bam \
-      /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.primertrimmed.rg.sorted.bam
+    artic-tools align_trim \
+        --normalise 100  \
+        --remove-incorrect-pairs \
+        --report ERR3790222.alignreport.txt \
+        < ERR3790222.sorted.bam \
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.primertrimmed.rg.sorted.bam
     ```
     
     ```
