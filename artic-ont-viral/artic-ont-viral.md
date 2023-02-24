@@ -1,5 +1,5 @@
 ---
-title: README.md
+title: ARTIC pipeline
 tags: ["Pathogen genomics", "Genomic surveillance", "Bioinformatics", "Metadata", "Linux", "Analysis"]
 ---
 # **Dengue virus sequence data analysis using the artic workflow**
