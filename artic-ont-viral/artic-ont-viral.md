@@ -500,7 +500,7 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
         --normalise 100 \
         --start \
         --report ERR3790222.alignreport.txt \
-        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort -T ERR3790222 - -o ERR3790222.trimmed.rg.sorted.bam
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed > ERR3790222.trimmed.rg.bam
     ```
 
     ```
