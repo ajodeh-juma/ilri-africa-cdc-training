@@ -722,7 +722,34 @@ in Africa.
 
 ---
 
-***Computation-wise, whichever way (poor/good) you choose to organise your data, ensure consistency***.
+Credits
+> Stubbs, S.C.B., Blacklaws, B.A., Yohan, B. et al. Assessment of a multiplex
+> PCR and Nanopore-based method for dengue virus sequencing in Indonesia. Virol
+> J 17, 24 (2020). https://doi.org/10.1186/s12985-020-1294-6
+
+> ARTIC: a bioinformatics pipeline for working with virus sequencing data sequenced with nanopore. https://github.com/artic-network/fieldbioinformatics
+
+> Primer schemes for real-time genome epidemiology.
+> https://github.com/artic-network/primer-schemes
+
+> https://jappavoo.github.io/UndertheCovers/textbook/unix/shelldetails.html
+
+> Introduction to Long-Read Data Analyis.
+> (https://timkahlke.github.io/LongRead_tutorials/)
+
+> Introduction to the Command Line for Genomics lesson
+> (https://datacarpentry.org/shell-genomics/)
+
+> Tenaillon, Olivier; Barrick, Jeffrey E; Ribeck, Noah; E. Deatherage, Daniel;
+> L. Blanchard, Jeffrey; Dasgupta, Aurko; et al. (2019): Data Carpentry Genomics
+> beta 2.0. figshare. Dataset. https://doi.org/10.6084/m9.figshare.7726454.v2 
+
+> The carpentries. Introduction to shell
+> (https://swcarpentry.github.io/shell-novice/)
+
+> http://boron.physics.metu.edu.tr/ozdogan/SystemsProgramming/week3/week3.pdf
+
+> Nick Loman, Will Rowe, Andrew Rambaut. nCoV-2019 novel coronavirus bioinformatics protocol. https://artic.network/ncov-2019/ncov2019-bioinformatics-sop.html
 
 ---
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
