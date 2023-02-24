@@ -456,10 +456,6 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
         ```
         samtools index ERR3790222.sorted.bam
         ```
-    - Index the alignment
-        ```
-        samtools index ERR3790222.sorted.bam
-        ```
         
     - Compute alignment statistics
         ```
