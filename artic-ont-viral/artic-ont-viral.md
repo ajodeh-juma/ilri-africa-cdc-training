@@ -379,20 +379,36 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
 
 2. Run the `minimap2` command with `map-ont` preset to align reads to the reference genome.
 
+
     ```
     minimap2 \
         -a \
         -x map-ont \
         -t 1 \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
-        /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz | samtools view -bS -F 4 - | samtools sort -o ERR3790222.sorted.bam -
+        /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz \
+        -o ERR3790222.sam
+    ```
+3. Only get mapped reads using the `-F 4` `FLAG`
+
+    ```
+    samtools view -bS -F 4 -o ERR3790222.bam ERR3790222.sam
     ```
 
-3. Index the `sorted` alignment
+4. Sort alignments by `coordinate`
+
+    ```
+    samtools sort \
+        -T ERR3790222 \
+        -o ERR3790222.sorted.bam \
+        ERR3790222.bam
+    ```
+
+5. Index the `sorted` alignment
     ```
     samtools index ERR3790222.sorted.bam
     ```
-4. Compute alignment statistics
+6. Compute alignment statistics
     ```
     samtools flagstat ERR3790222.sorted.bam
     ```
@@ -417,18 +433,38 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
             -x ont2d \
             -t 1 \
             /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2 \
-            /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz | samtools view -bS -F 4 - | samtools sort -o ERR3790222.sorted.bam -
+            /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz \
+            -o ERR3790222.sam
+        ```
+
+    - Only get mapped reads using the `-F 4` `FLAG`
+
+        ```
+        samtools view -bS -F 4 -o ERR3790222.bam ERR3790222.sam
+        ```
+    
+    - Sort alignments by `coordinate`
+
+        ```
+        samtools sort \
+            -T ERR3790222 \
+            -o ERR3790222.sorted.bam \
+            ERR3790222.bam
+        ```
+
+    - Index the `sorted` alignment
+        ```
+        samtools index ERR3790222.sorted.bam
         ```
     - Index the alignment
         ```
         samtools index ERR3790222.sorted.bam
         ```
-
-
-5. Compute alignment statistics
-    ```
-    samtools flagstat ERR3790222.sorted.bam
-    ```
+        
+    - Compute alignment statistics
+        ```
+        samtools flagstat ERR3790222.sorted.bam
+        ```
     >**<strong style="color:magenta;opacity: 0.80 ">Quiz:</strong>**
     - What is the percentage of mapped reads using `minimap2`?
 
@@ -460,24 +496,38 @@ By softmasking, we refer to the process of adjusting the CIGAR of each alignment
 
     ```
     artic-tools align_trim \
-        --start \
+        -b ERR3790222.sorted.bam \
         --normalise 100 \
+        --start \
         --report ERR3790222.alignreport.txt \
-        < ERR3790222.sorted.bam \
         /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort -T ERR3790222 - -o ERR3790222.trimmed.rg.sorted.bam
+    ```
+
+    ```
+    samtools sort \
+        -T ERR3790222 \
+        ERR3790222.trimmed.rg.bam \
+        -o ERR3790222.trimmed.rg.sorted.bam
     ```
 
     ```
     samtools index ERR3790222.trimmed.rg.sorted.bam
     ```
+    Remove amplicons with incorrect primer pairs
 
     ```
     artic-tools align_trim \
-        --normalise 100  \
+        -b ERR3790222.sorted.bam \
         --remove-incorrect-pairs \
         --report ERR3790222.alignreport.txt \
-        < ERR3790222.sorted.bam \
-        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed | samtools sort - -o ERR3790222.primertrimmed.rg.sorted.bam
+        /var/scratch/$USER/ont-artic/primer-schemes/DENV2/DENV2.primer.bed > ERR3790222.primertrimmed.rg.bam
+    ```
+
+    ```
+    samtools sort \
+        -T ERR3790222 \
+        ERR3790222.primertrimmed.rg.bam \
+        -o ERR3790222.primertrimmed.rg.sorted.bam
     ```
     
     ```
@@ -597,6 +647,8 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     indexed ready for the next stage.
     ```
     artic_vcf_filter \
+        --min-depth 20 \
+        --min-qual 20 \
         --medaka ERR3790222.merged.vcf \
         ERR3790222.pass.vcf \
         ERR3790222.fail.vcf
