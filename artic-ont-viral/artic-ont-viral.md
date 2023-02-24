@@ -643,8 +643,6 @@ In this step, we will use `medaka`, a tool to create consensus sequences and var
     indexed ready for the next stage.
     ```
     artic_vcf_filter \
-        --min-depth 20 \
-        --min-qual 20 \
         --medaka ERR3790222.merged.vcf \
         ERR3790222.pass.vcf \
         ERR3790222.fail.vcf
