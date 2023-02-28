@@ -45,7 +45,6 @@ do
     artic-tools align_trim \
       --normalise 200 \
       --start \
-      --remove-incorrect-pairs \
       --report "$sample.alignreport.txt" \
       <${bam} \
       ${primer_bed} | samtools sort - -o ${sample}.trimmed.rg.sorted.bam
@@ -173,5 +172,3 @@ do
 
 
 done
-
-

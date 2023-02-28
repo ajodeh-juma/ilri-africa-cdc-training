@@ -10,17 +10,14 @@
 #SBATCH --mail-user=J.Juma@cgiar.org
 
 # clear environment
-# module purge
+module purge
 
 # load modules
-# module load artic
+module load artic/1.2.3
 
 # define inputs/outputs
 DATA_DIR="${HOME}/trainings/africacdc-ilri-aslm-2023/artic-ont-viral/data/dataset-002"
 OUTPUT_DIR="${HOME}/trainings/africacdc-ilri-aslm-2023/artic-ont-viral/output/dataset-002/artic-guppyplex"
-
-#DATA_DIR="${HOME}/trainings/africacdc-ilri-aslm-2023/data/dataset-2"
-# OUTPUT_DIR="${HOME}/trainings/africacdc-ilri-aslm-2023/output-dir/dataset-2/artic-guppyplex"
 
 
 if [ ! -d "${OUTPUT_DIR}" ]; then
