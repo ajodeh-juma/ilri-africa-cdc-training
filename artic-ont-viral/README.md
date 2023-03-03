@@ -147,6 +147,7 @@ specified node within the computing cluster using the `-w` flag.
     module load bedtools/2.29.0
     module load R/4.2
     module load mafft/7.475
+    module load iqtree/2.2.0
     ```
 6. Hit the `ENTER` key
 
@@ -787,9 +788,21 @@ arithmetic and interval manipulation tool.
     awk '/^>/ {$0=$1} 1' all_genomes.fasta > all_genomes_renamed.fasta
     ```
 
-4. Align the sequences using `mafft`
+4. Align the sequences using `MAFFT`
     ```
     mafft --thread 1 all_genomes_renamed.fasta > all_genomes.aln.fasta
+    ```
+
+5. Construct ML phylogenetic tree with `IQTREE`
+
+    ```
+    iqtree \
+        -s all_genomes.aln.fasta \
+        -m TEST \
+        -T 1 \
+        -bb 1000 \
+        -redo \
+        --prefix DENV
     ```
 
 > **Note**
