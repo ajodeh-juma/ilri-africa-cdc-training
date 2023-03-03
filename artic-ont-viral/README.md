@@ -785,7 +785,7 @@ arithmetic and interval manipulation tool.
 
 4. Align the sequences using `mafft`
     ```
-    mafft --thread 1 all_sequences.fasta > all_sequences.aln.fasta
+    mafft --thread 1 all_genomes.fasta > all_genomes.aln.fasta
     ```
 
 > **Note**
