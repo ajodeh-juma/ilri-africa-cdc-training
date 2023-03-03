@@ -131,7 +131,7 @@ specified node within the computing cluster using the `-w` flag.
     ```
     mkdir genomes output
     mkdir -p genomes/DENV2
-    mkdir -p output/dataset-002/{fastqc,artic-guppyplex,bwa,minimap2,medaka,bedtools}
+    mkdir -p output/dataset-002/{fastqc,artic-guppyplex,bwa,minimap2,medaka,bedtools,mafft}
     ```  
 4. Clear environment
     ```
@@ -768,6 +768,23 @@ arithmetic and interval manipulation tool.
     /var/scratch/$USER/ont-artic/metadata/genome-accessions.txt \
     /var/scratch/$USER/ont-artic/genomes/auxilliary-dengue-genomes
    ```
+
+2. Change to the output directory ```mafft```
+    ```
+    cd /var/scratch/$USER/ont-artic/output/dataset-002/mafft/
+    ```  
+
+3. Concetanate the Dengue virus 2 reference genome sequence with the downloaded
+   datasets
+
+    ```
+    cat /var/scratch/jjuma/ont-artic/genomes/DENV2/DENV2.fasta /var/scratch/$USER/ont-artic/genomes/auxilliary-dengue-genomes/*.fasta > all_genomes.fasta
+    ```
+
+4. Align the sequences using `mafft`
+    ```
+    mafft --thread 1 all_sequences.fasta > all_sequences.aln.fasta
+    ```
 
 > **Note**
 
