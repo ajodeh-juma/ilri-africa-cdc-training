@@ -776,16 +776,20 @@ arithmetic and interval manipulation tool.
     ```  
 
 3. Concetanate the Dengue virus 2 reference genome sequence with the downloaded
-   datasets
+   datasets and remove all the characters after the first space
 
     ```
     cat /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
     /var/scratch/$USER/ont-artic/genomes/auxilliary-dengue-genomes/*.fasta > all_genomes.fasta
     ```
 
+    ```
+    awk '/^>/ {$0=$1} 1' all_genomes.fasta > all_genomes_renamed.fasta
+    ```
+
 4. Align the sequences using `mafft`
     ```
-    mafft --thread 1 all_genomes.fasta > all_genomes.aln.fasta
+    mafft --thread 1 all_genomes_renamed.fasta > all_genomes.aln.fasta
     ```
 
 > **Note**
