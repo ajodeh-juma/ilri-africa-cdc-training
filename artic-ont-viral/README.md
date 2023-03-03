@@ -796,7 +796,7 @@ arithmetic and interval manipulation tool.
 5. Construct ML phylogenetic tree with `IQTREE`
 
     ```
-    iqtree \
+    iqtree2 \
         -s all_genomes.aln.fasta \
         -m TEST \
         -T 1 \
