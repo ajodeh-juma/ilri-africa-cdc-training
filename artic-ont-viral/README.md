@@ -146,6 +146,7 @@ specified node within the computing cluster using the `-w` flag.
     module load artic/1.2.3
     module load bedtools/2.29.0
     module load R/4.2
+    module load mafft/7.475
     ```
 6. Hit the `ENTER` key
 
@@ -778,7 +779,8 @@ arithmetic and interval manipulation tool.
    datasets
 
     ```
-    cat /var/scratch/jjuma/ont-artic/genomes/DENV2/DENV2.fasta /var/scratch/$USER/ont-artic/genomes/auxilliary-dengue-genomes/*.fasta > all_genomes.fasta
+    cat /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
+    /var/scratch/$USER/ont-artic/genomes/auxilliary-dengue-genomes/*.fasta > all_genomes.fasta
     ```
 
 4. Align the sequences using `mafft`
