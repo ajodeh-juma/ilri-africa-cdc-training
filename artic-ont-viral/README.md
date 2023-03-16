@@ -94,7 +94,7 @@ ssh <user_name>@hpc.ilri.cgiar.org
 The HPC head node has 4 CPUs and we need to access more CPUs/resources in other compute nodes.
 You will have to move from the cluster's master node into the node where we will be working from (it is called `compute05`). Use the following command; `-w` requests (a) specific list of host(s).
 ```
-interactive -w compute05
+interactive -c 2 -w compute05
 ```
 
 `ssh` allows you to securely connect to the remote computer over internet, while
@@ -387,7 +387,7 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
     minimap2 \
         -a \
         -x map-ont \
-        -t 1 \
+        -t 2 \
         /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2.fasta \
         /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz \
         -o ERR3790222.sam
@@ -434,7 +434,7 @@ opposed to `bwa` where you have to explicitly build the reference genome index.
         ```
         bwa mem \
             -x ont2d \
-            -t 1 \
+            -t 2 \
             /var/scratch/$USER/ont-artic/genomes/DENV2/DENV2 \
             /var/scratch/$USER/ont-artic/output/dataset-002/artic-guppyplex/ERR3790222.fastq.gz \
             -o ERR3790222.sam
